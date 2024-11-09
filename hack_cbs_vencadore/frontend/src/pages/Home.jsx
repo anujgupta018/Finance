@@ -2,6 +2,7 @@ import { ArrowRight, PiggyBank, TrendingUp, Heart } from 'lucide-react';
 import { Button, Card } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import '../style/Home.css';
+import {motion} from 'framer-motion'
 
 export default function Home() {
   const router = useNavigate();
@@ -20,7 +21,7 @@ export default function Home() {
               Auto Round-Up helps you save and invest effortlessly. Round up your purchases and watch your savings grow.
             </p>
             <div style={{marginTop:"20px"}}>
-              <Button type="primary" className="button-primary" onClick={()=>router('/Dashboard')}>Get Started</Button>
+              <Button type="primary" className="button-primary hover:scale-105" onClick={()=>router('/Dashboard')}>Get Started</Button>
               <Button type="default" className="button-outline">Learn More</Button>
             </div>
           </div>
