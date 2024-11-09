@@ -1,0 +1,56 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator db {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id                 Int           @id @default(autoincrement())
+  username           String        @unique
+  email              String        @unique
+  password           String
+  isEmailVerified    Boolean       @default(false)
+  totalSavings       Int           @default(0) // Current total savings from non-goal transactions
+  totalSavingsToDate Int           @default(0) // Overall savings to date
+  currentStreak      Int           @default(0)
+  lastSaveDate       DateTime?
+  bankBalance        Int           @default(0)
+  roundingOption     String        @default("nearestWhole") // nearest10 || nearestWhole || plus5 
+  maxStreak          Int           @default(0)
+  emailNotifications Boolean       @default(false)
+  weeklySummary      Boolean       @default(false)
+  createdAt          DateTime      @default(now())
+  transactions       Transaction[]
+  goals              Goal[]
+}
+
+model Goal {
+  id           Int           @id @default(autoincrement())
+  userId       Int
+  user         User          @relation(fields: [userId], references: [id])
+  name         String
+  day          String
+  month        String
+  year         String
+  amount       Int // Target amount for the goal
+  type         String
+  savedAmount  Int           @default(0)
+  isRedeemed   Boolean       @default(false) // Marks if goal has been redeemed
+  createdAt    DateTime      @default(now())
+  transactions Transaction[] // Contributions towards this goal from transactions
+}
+
+model Transaction {
+  id             Int      @id @default(autoincrement())
+  user           User     @relation(fields: [userId], references: [id])
+  userId         Int
+  goal           Goal?    @relation(fields: [goalId], references: [id])
+  goalId         Int? // Nullable if transaction doesn’t contribute to a specific goal
+  originalAmount Int
+  saved          Int
+  nearestRoundUp String // Option for rounding (e.g., "nearestWhole", "nearest10", "plus5")
+  createdAt      DateTime @default(now())
+}

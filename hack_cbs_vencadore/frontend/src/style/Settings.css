@@ -1,0 +1,44 @@
+.settings-container {
+    padding: 16px;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .settings-title {
+    margin-bottom: 24px;
+  }
+  
+  .settings-card {
+    margin-bottom: 24px;
+    padding: 16px;
+    border-radius: 8px;
+  }
+  
+  .settings-content {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  .settings-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .settings-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .settings-radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .settings-select {
+    width: 100%;
+  }
+  

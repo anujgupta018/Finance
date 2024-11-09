@@ -1,0 +1,89 @@
+.dashboard-container {
+    padding: 16px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .dashboard-title {
+    margin-bottom: 24px;
+  }
+  
+  .dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  
+  @media (min-width: 768px) {
+    .dashboard-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  
+  .dashboard-card {
+    padding: 16px;
+    border-radius: 8px;
+    border: 1px solid #f0f0f0;
+  }
+  
+  .dashboard-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .dashboard-icon {
+    font-size: 20px;
+    color: #888;
+  }
+  
+  .dashboard-progress-card {
+    margin-bottom: 24px;
+    padding: 16px;
+    border-radius: 8px;
+  }
+  
+  .dashboard-progress {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 16px;
+  }
+  
+  .progress-icon {
+    font-size: 24px;
+    color: #1890ff;
+  }
+  
+  .progress-bar {
+    flex: 1;
+  }
+  
+  .dashboard-transactions-card {
+    padding: 16px;
+    border-radius: 8px;
+  }
+  
+  .transactions-list {
+    margin-top: 16px;
+  }
+  
+  .transaction-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  
+  .transaction-details,
+  .transaction-roundup {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .roundup-amount {
+    color: #52c41a;
+    font-weight: bold;
+  }
+  

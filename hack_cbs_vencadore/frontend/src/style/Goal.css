@@ -1,0 +1,43 @@
+.goal-container {
+    padding: 16px;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .goal-title {
+    margin-bottom: 24px;
+  }
+  
+  .goal-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  
+  @media (min-width: 768px) {
+    .goal-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  .goal-card {
+    padding: 16px;
+    border-radius: 8px;
+  }
+  
+  .goal-progress {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 8px;
+  }
+  
+  .goal-add-card {
+    padding: 16px;
+    border-radius: 8px;
+  }
+  
+  .goal-add-button {
+    margin-top: 16px;
+  }
+  
