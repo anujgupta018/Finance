@@ -2,12 +2,24 @@ import { ArrowRight, PiggyBank, TrendingUp, Heart } from 'lucide-react';
 import { Button, Card } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import '../style/Home.css';
-import {motion} from 'framer-motion'
+import {motion,AnimatePresence} from 'framer-motion'
+import { useLocation } from 'react-router-dom';
+import { useAuth0 } from '@auth0/auth0-react';
 
 export default function Home() {
+  const {loginWithRedirect,logout,user,isLoading}=useAuth0();
+
+  const location=useLocation();
+  const pageTransition = {
+    initial: { x: '-100vw', opacity: 0 },
+    animate: { x: 0, opacity: 1 },
+    exit: { x: '100vw', opacity: 0 },
+    transition: { type: 'spring', stiffness: 50, damping: 20, duration: 3}
+  };
   const router = useNavigate();
   return (
-    <div className="min-h-screen">
+    <AnimatePresence>
+    <motion.div className="min-h-screen">
       
       <header className="header">
      <PiggyBank className="icon" />
@@ -51,9 +63,20 @@ export default function Home() {
               Join thousands of users who are already saving more with every purchase. Sign up now and take control of your financial future.
             </p>
             <div style={{marginTop:"20px"}}>
-               <Button type="primary" className="button-primary">
-              Sign Up Now <ArrowRight className="icon-small" />
-            </Button>
+             {
+              !isLoading && !user && 
+                <button type='primary' className='button-primary hover:bg-blue hover:text-white hover:scale-105'
+                  onClick={()=>{loginWithRedirect()}}
+                >Sign Up Now!</button>
+             }
+               {
+                !isLoading && user && 
+                <button type='primary' className='button-primary hover:bg-blue hover:text-white hover:scale-105'
+                  onClick={()=>{logout()}}
+                >
+                  Logout!
+                </button>
+               }
             </div>
            
           </div>
@@ -67,6 +90,7 @@ export default function Home() {
           <a href="#" className="footer-link">Privacy</a>
         </nav>
       </footer>
-    </div>
+    </motion.div>
+    </AnimatePresence>
   );
 }
